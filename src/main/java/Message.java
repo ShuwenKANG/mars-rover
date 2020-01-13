@@ -1,10 +1,18 @@
 public class Message {
 
+  Location location;
+  Direction direction;
+
   public Location getLocation() {
-    return null;
+    return location;
   }
 
   public Direction getDirection() {
-    return null;
+    return direction;
+  }
+
+  public Message(Location location, Direction direction) {
+    this.location = location;
+    this.direction = direction;
   }
 }

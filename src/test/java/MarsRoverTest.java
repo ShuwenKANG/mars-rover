@@ -14,7 +14,8 @@ public class MarsRoverTest {
 
     Message actualMsg = rover.send(iCmd);
 
-    assertEquals(location, actualMsg.getLocation());
-    assertEquals(direction, actualMsg.getDirection());
+    assertEquals(2, actualMsg.getLocation().getX(), 0.01);
+    assertEquals(3, actualMsg.getLocation().getY(), 0.01);
+    assertEquals("N", actualMsg.getDirection().get());
   }
 }
