@@ -16,6 +16,20 @@ public class MarsRoverTest {
 
     assertEquals(2, actualMsg.getLocation().getX(), 0.01);
     assertEquals(3, actualMsg.getLocation().getY(), 0.01);
-    assertEquals("N", actualMsg.getDirection().get());
+    assertEquals("N", actualMsg.getDirection().getDirectionAsString());
+  }
+
+  @Test
+  public void should_return_message_contains_moving_result_when_send_move_command() {
+    Rover rover = new Rover();
+    InitCommand iCmd = new InitCommand(new Location(2, 3), new Direction("N"));
+    rover.send(iCmd);
+
+    MoveCommand mCmd = new MoveCommand();
+    Message actualMsg = rover.send(mCmd);
+
+    assertEquals(2, actualMsg.getLocation().getX(), 0.01);
+    assertEquals(4, actualMsg.getLocation().getY(), 0.01);
+    assertEquals("N", actualMsg.getDirection().getDirectionAsString());
   }
 }

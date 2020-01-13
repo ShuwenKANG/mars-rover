@@ -2,6 +2,7 @@ public class Rover {
 
   private Location location;
   private Direction direction;
+  private double stepLength = 1;
 
   public Rover() {
     this.location = new Location(0, 0);
@@ -12,7 +13,22 @@ public class Rover {
     this.location = iCmd.getLocation();
     this.direction = iCmd.getDirection();
 
-    Message message = new Message(this.location, this.direction);
-    return message;
+    return new Message(this.location, this.direction);
+  }
+
+  public Message send(MoveCommand mCmd) {
+    move();
+    return new Message(this.location, this.direction);
+  }
+
+  private void move() {
+    double currentX = location.getX();
+    double currentY = location.getY();
+
+    double updatedX = currentX + direction.toCoordinateX() * stepLength;
+    double updatedY = currentY + direction.toCoordinateY() * stepLength;
+
+    location.setX(updatedX);
+    location.setY(updatedY);
   }
 }

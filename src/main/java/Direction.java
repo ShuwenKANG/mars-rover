@@ -15,7 +15,29 @@ public class Direction {
     this.direction = direction.direction;
   }
 
-  public String get() {
+  public String getDirectionAsString() {
     return direction.toString();
+  }
+
+  public int toCoordinateX() {
+    switch (direction) {
+      case E:
+        return 1;
+      case W:
+        return -1;
+      default:
+        return 0;
+    }
+  }
+
+  public int toCoordinateY() {
+    switch (direction) {
+      case N:
+        return 1;
+      case S:
+        return -1;
+      default:
+        return 0;
+    }
   }
 }
