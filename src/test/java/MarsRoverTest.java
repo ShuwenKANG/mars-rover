@@ -25,7 +25,7 @@ public class MarsRoverTest {
   }
 
   @Test
-  public void should_return_message_contains_moving_result_when_send_move_command() {
+  public void should_return_message_contains_moving_result_when_send_move_command() throws DirectionToDegreeException {
     Rover rover = new Rover();
     InitCommand iCmd = new InitCommand(new Location(2, 3), new Direction("N"));
     rover.send(iCmd);

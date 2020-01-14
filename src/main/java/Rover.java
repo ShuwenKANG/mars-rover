@@ -21,7 +21,7 @@ public class Rover {
     return new Message(this.location, this.direction);
   }
 
-  public Message send(MoveCommand mCmd) {
+  public Message send(MoveCommand mCmd) throws DirectionToDegreeException {
     move();
     return new Message(this.location, this.direction);
   }
@@ -59,12 +59,12 @@ public class Rover {
     this.direction.setDegree(updatedTheta);
   }
 
-  private void move() {
+  private void move() throws DirectionToDegreeException {
     double currentX = location.getX();
     double currentY = location.getY();
 
-    double updatedX = currentX + direction.toCoordinateX() * stepLength;
-    double updatedY = currentY + direction.toCoordinateY() * stepLength;
+    double updatedX = currentX + Math.sin(direction.toDegree()) * stepLength;
+    double updatedY = currentY + Math.cos(direction.toDegree()) * stepLength;
 
     location.setX(updatedX);
     location.setY(updatedY);

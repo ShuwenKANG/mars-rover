@@ -7,9 +7,7 @@ public class Direction {
     N,
     E,
     W,
-    S;
-
-
+    S
   }
   private DirectionEnum direction;
   public Direction(String n) {
@@ -21,28 +19,6 @@ public class Direction {
 
   public String getDirectionAsString() {
     return direction.toString();
-  }
-
-  public int toCoordinateX() {
-    switch (direction) {
-      case E:
-        return 1;
-      case W:
-        return -1;
-      default:
-        return 0;
-    }
-  }
-
-  public int toCoordinateY() {
-    switch (direction) {
-      case N:
-        return 1;
-      case S:
-        return -1;
-      default:
-        return 0;
-    }
   }
 
   public double toDegree() throws DirectionToDegreeException {
