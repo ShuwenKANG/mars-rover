@@ -1,4 +1,4 @@
-public class InitCommand {
+public class InitCommand extends Command{
 
   Location location;
   Direction direction;

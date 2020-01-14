@@ -1,3 +1,7 @@
+import Exceptions.DegreeToDirectionException;
+import Exceptions.DirectionToDegreeException;
+import java.util.List;
+
 public class Rover {
 
   private Location location;
@@ -19,6 +23,27 @@ public class Rover {
   public Message send(MoveCommand mCmd) {
     move();
     return new Message(this.location, this.direction);
+  }
+
+  public Message send(TurnCommand tCmd) throws DirectionToDegreeException, DegreeToDirectionException {
+    turn(tCmd);
+    return new Message(this.location, this.direction);
+  }
+
+  public Message send(List<Command> cmdList) {
+    for(Command cmd: cmdList) {
+//      send(cmd);
+    }
+    return new Message(this.location, this.direction);
+  }
+
+  private void turn(TurnCommand tCmd) throws DirectionToDegreeException, DegreeToDirectionException {
+    double currentTheta = direction.toDegree();
+
+    double turnTheta = tCmd.toDegree();
+
+    double updatedTheta = (currentTheta + turnTheta) % 360;
+    this.direction.setDegree(updatedTheta);
   }
 
   private void move() {
