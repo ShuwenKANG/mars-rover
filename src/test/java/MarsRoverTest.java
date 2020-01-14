@@ -1,5 +1,6 @@
 import Exceptions.DegreeToDirectionException;
 import Exceptions.DirectionToDegreeException;
+import Exceptions.UndefinedCommandException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -54,7 +55,7 @@ public class MarsRoverTest {
 
   @Test
   public void should_return_message_contains_execution_result_when_send_command_list()
-      throws DirectionToDegreeException, DegreeToDirectionException {
+      throws DirectionToDegreeException, DegreeToDirectionException, UndefinedCommandException {
     Rover rover = new Rover();
     InitCommand iCmd = new InitCommand(new Location(2, 3), new Direction("N"));
     MoveCommand mCmd = new MoveCommand();

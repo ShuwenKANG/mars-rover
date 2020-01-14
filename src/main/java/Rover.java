@@ -1,5 +1,6 @@
 import Exceptions.DegreeToDirectionException;
 import Exceptions.DirectionToDegreeException;
+import Exceptions.UndefinedCommandException;
 import java.util.List;
 
 public class Rover {
@@ -30,9 +31,21 @@ public class Rover {
     return new Message(this.location, this.direction);
   }
 
-  public Message send(List<Command> cmdList) {
+  public Message send(List<Command> cmdList)
+      throws DirectionToDegreeException, DegreeToDirectionException, UndefinedCommandException {
     for(Command cmd: cmdList) {
-//      send(cmd);
+      if(cmd instanceof InitCommand) {
+        send((InitCommand) cmd);
+      }
+      else if(cmd instanceof MoveCommand) {
+        send((MoveCommand) cmd);
+      }
+      else if(cmd instanceof TurnCommand) {
+        send((TurnCommand) cmd);
+      }
+      else {
+        throw new UndefinedCommandException();
+      }
     }
     return new Message(this.location, this.direction);
   }
